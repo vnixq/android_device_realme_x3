@@ -122,6 +122,10 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
     Settings \
     SystemUI
 
+# Google Assistant
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.opa.eligible_device=true
+
 # Telephony
 PRODUCT_PACKAGES += \
     extphonelib \
