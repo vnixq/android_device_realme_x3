@@ -177,6 +177,10 @@ on property:vendor.usb.product_string=*
 on property:gsm.version.baseband=*
     start set_baseband
 
+on property:persist.sys.device_provisioned=1
+    setprop dalvik.vm.dex2oat-cpu-set 0,1,2,3,4,5,6,7
+    setprop dalvik.vm.dex2oat-threads 6
+
 service set_baseband /product/bin/init.set_baseband.sh
     class late_start
     user system
