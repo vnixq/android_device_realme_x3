@@ -58,6 +58,7 @@ dalvik.vm.isa.arm64.variant=cortex-a76
 
 # Display
 debug.sf.frame_rate_multiple_threshold=120
+debug.sf.disable_client_composition_cache=1
 persist.sys.sf.native_mode=1
 ro.sf.lcd_density=440
 ro.surface_flinger.has_HDR_display=true
