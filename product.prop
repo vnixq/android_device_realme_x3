@@ -12,6 +12,7 @@ persist.vendor.bluetooth.modem_nv_support=true
 persist.vendor.bt.a2dp.hal.implementation=true
 persist.vendor.btstack.enable.twsplus=true
 persist.vendor.btstack.enable.twsplussho=true
+persist.vendor.btstack.enable.lpa=true
 persist.vendor.service.bt.iotinfo.report.enable=true
 
 # Set the Bluetooth Class of Device
