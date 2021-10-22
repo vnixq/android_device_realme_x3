@@ -24,6 +24,12 @@ dalvik.vm.systemuicompilerfilter=speed
 # FUSE
 persist.sys.fuse.passthrough.enable=true
 
+# GMS
+ro.com.google.clientidbase=android-oppo
+ro.com.google.clientidbase.ms=android-oppo
+ro.com.google.clientidbase.tx=android-oppo
+ro.com.google.clientidbase.vs=android-oppo
+
 # Media
 media.stagefright.thumbnail.prefer_hw_codecs=true
 persist.mm.enable.prefetch=true
