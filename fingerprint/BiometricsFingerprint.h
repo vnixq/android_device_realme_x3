@@ -61,7 +61,11 @@ public:
     Return<RequestStatus> setActiveGroup(uint32_t gid, const hidl_string& storePath) override;
     Return<RequestStatus> authenticate(uint64_t operationId, uint32_t gid) override;
 
+    // ScreenState //
+    void setFingerprintScreenState(const bool on);
+
 private:
+    bool isEnrolling;
     sp<vendor::oplus::hardware::biometrics::fingerprint::V2_1::IBiometricsFingerprint> mOplusBiometricsFingerprint;
     sp<OplusClientCallback> mOplusClientCallback;
     static Return<RequestStatus> OplusToAOSPRequestStatus(vendor::oplus::hardware::biometrics::fingerprint::V2_1::RequestStatus req);
