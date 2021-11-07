@@ -69,8 +69,11 @@ public:
     Return<void> onAuthenticated(uint64_t deviceId, uint32_t fingerId, uint32_t groupId,
         const hidl_vec<uint8_t>& token) {
         ALOGV("onAuthenticated %" PRIu64 " %u %u", deviceId, fingerId, groupId);
-        if(mClientCallback != nullptr)
+        if(mClientCallback != nullptr){
+            if (fingerId!=0)//0 means finger not recognized
+                set(DIMLAYER_PATH, STATUS_OFF);
             mClientCallback->onAuthenticated(deviceId, fingerId, groupId, token);
+        }
         return Void();
     }
 
