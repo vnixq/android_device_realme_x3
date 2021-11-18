@@ -10,10 +10,6 @@ $(call inherit-product, vendor/realme/x3/x3-vendor.mk)
 # Include Developer GSI keys
 $(call inherit-product, $(SRC_TARGET_DIR)/product/developer_gsi_keys.mk)
 
-# Inherit updatable APEX
-OVERRIDE_PRODUCT_COMPRESSED_APEX := false
-$(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
-
 # ANT+
 PRODUCT_PACKAGES += \
     AntHalService-Soong
