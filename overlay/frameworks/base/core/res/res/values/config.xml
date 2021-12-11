@@ -1059,6 +1059,9 @@
          <item>@array/sfps_sensor_props</item>
     </array>
 
+    <!-- Determines whether the shell features all run on another thread. -->
+    <bool name="config_enableShellMainThread">true</bool>
+
     <string-array name="sfps_sensor_props" translatable="false">
         <item></item>     <!-- displayId -->
         <item>1080</item> <!-- sensorLocationX -->
