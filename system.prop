@@ -19,6 +19,7 @@ persist.vendor.data.mode=concurrent
 
 # Dex2oat
 dalvik.vm.dex2oat64.enabled=true
+dalvik.vm.systemuicompilerfilter=speed
 
 # FUSE
 persist.sys.fuse.passthrough.enable=true
