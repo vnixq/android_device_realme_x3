@@ -97,6 +97,9 @@ ro.surface_flinger.force_hwc_copy_for_virtual_displays=true
 # Phantom process monitoring
 sys.fflag.override.settings_enable_monitor_phantom_procs=false
 
+# Phantom process monitoring
+sys.fflag.override.settings_enable_monitor_phantom_procs=false
+
 # Radio
 persist.vendor.radio.data_con_rprt=1
 persist.vendor.radio.process_sups_ind=1
