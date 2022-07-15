@@ -1078,6 +1078,9 @@
 	  <!-- See AmbientSensor.AmbientColorTemperatureSensor.
          The ambient color temperature sensor name. -->
     <string name="config_displayWhiteBalanceColorTemperatureSensorName">com.google.sensor.color</string>
+
+    <!-- The max scale for the wallpaper when it's zoomed in -->
+    <item name="config_wallpaperMaxScale" format="float" type="dimen">1</item>
 </resources>
 
     <!-- Package name of a telephony-related system app, such as an IMS service.
