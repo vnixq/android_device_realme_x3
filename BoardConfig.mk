@@ -65,25 +65,31 @@ TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):libinit_x3
 TARGET_RECOVERY_DEVICE_MODULES := libinit_x3
 
 # Kernel
-BOARD_KERNEL_IMAGE_NAME := Image.gz
+BOARD_KERNEL_SEPARATED_DTBO := true
+BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_BASE := 0x00000000
-
-BOARD_KERNEL_SEPARATED_DTBO := true
+BOARD_KERNEL_TAGS_OFFSET := 0x00000100
+BOARD_RAMDISK_OFFSET := 0x01000000
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
-BOARD_MKBOOTIMG_ARGS += --header_version 2
 
 BOARD_KERNEL_CMDLINE := console=ttyMSM0,115200n8 earlycon=msm_geni_serial,0xa90000 androidboot.hardware=qcom androidboot.console=ttyMSM0 androidboot.memcg=1 lpm_levels.sleep_disabled=1 msm_rtb.filter=0x237 service_locator.enable=1 swiotlb=2048 loop.max_part=7 androidboot.usbcontroller=a600000.dwc
 BOARD_KERNEL_CMDLINE += kpti=off
 BOARD_KERNEL_CMDLINE += androidboot.init_fatal_reboot_target=recovery
 BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 
+KERNEL_LD := LD=ld.lld
+TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_SOURCE := kernel/realme/x3
-TARGET_KERNEL_CONFIG := vendor/x3-perf_defconfig
+TARGET_KERNEL_CONFIG := x3_defconfig
 TARGET_KERNEL_CLANG_COMPILE := true
-TARGET_KERNEL_ADDITIONAL_FLAGS := \
-    LD=ld.lld AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip \
-    HOSTCFLAGS="-fuse-ld=lld -Wno-unused-command-line-argument"
+TARGET_KERNEL_ADDITIONAL_FLAGS := LLVM_IAS=1 LLVM=1 LD=ld.lld AR=llvm-ar NM=llvm-nm STRIP=llvm-strip
+TARGET_KERNEL_ADDITIONAL_FLAGS += OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump READELF=llvm-readelf HOSTAR=llvm-ar HOSTLD=ld.lld
+TARGET_KERNEL_ADDITIONAL_FLAGS += HOSTCFLAGS="-fuse-ld=lld -Wno-unused-command-line-argument"
+TARGET_KERNEL_CLANG_VERSION := clang-r450784d
+TARGET_KERNEL_CLANG_PATH := $(shell pwd)/prebuilts/clang/host/linux-x86/$(TARGET_KERNEL_CLANG_VERSION)
+TARGET_KERNEL_CROSS_COMPILE_PREFIX := $(TARGET_KERNEL_CLANG_PATH)/bin/aarch64-linux-gnu-
+TARGET_KERNEL_CROSS_COMPILE_ARM32_PREFIX := $(TARGET_KERNEL_CLANG_PATH)/bin/arm-linux-gnueabi-
 
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 262144 # (BOARD_KERNEL_PAGESIZE * 64)
