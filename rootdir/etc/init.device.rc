@@ -30,6 +30,10 @@ on early-init
     write /sys/block/dm-8/queue/read_ahead_kb 2048
     write /sys/block/dm-9/queue/read_ahead_kb 2048
 
+# Workarround for cache
+    rm /data/resource-cache
+    rm /data/system/package_cache 
+
 on init
     chown system system /proc/touchpanel/double_tap_enable
     chmod 0660 /proc/touchpanel/double_tap_enable
