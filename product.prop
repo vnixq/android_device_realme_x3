@@ -52,6 +52,9 @@ persist.vendor.camera.privapp.list=com.android.camera,com.oppo.camera,org.codeau
 # Charger
 ro.charger.enable_suspend=true
 
+# Disable vsync for cpu rendered apps
+debug.cpurend.vsync=false
+
 # Dalvik
 dalvik.vm.isa.arm.variant=cortex-a55
 dalvik.vm.isa.arm64.variant=cortex-a76
