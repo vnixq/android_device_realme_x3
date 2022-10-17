@@ -1132,4 +1132,6 @@
          so that applications can still use their own mechanisms. -->
     <bool name="config_enableAutoPowerModes">true</bool>
 
+    <!-- Display has physical cutout -->
+    <bool name="config_physicalDisplayCutout">true</bool>
 </resources>
