@@ -109,6 +109,10 @@ on property:vendor.post_boot.parsed=1
     write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/pl 1
     write /sys/devices/system/cpu/cpu6/cpufreq/schedutil/pl 1
 
+    # EAS
+    write /proc/sys/kernel/sched_upmigrate 95
+    write /proc/sys/kernel/sched_downmigrate 85
+
     # Setup llccbw and ddrbw max_freq
     write /sys/class/devfreq/soc:qcom,cpu-cpu-llcc-bw/max_freq 15258
     write /sys/class/devfreq/soc:qcom,cpu-llcc-ddr-bw/max_freq 7980
