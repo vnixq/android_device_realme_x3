@@ -72,6 +72,10 @@ PRODUCT_PACKAGES += \
     libhidltransport \
     libhwbinder
 
+# IFAA
+PRODUCT_PACKAGES += \
+    IFAAService
+
 # Init
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/etc/init.device.rc:$(TARGET_COPY_OUT_PRODUCT)/etc/init/init.device.rc \
