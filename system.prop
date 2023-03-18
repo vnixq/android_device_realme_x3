@@ -6,6 +6,7 @@ ro.config.media_vol_steps=25
 persist.vendor.bt.a2dp.aac_whitelist=false
 ro.bluetooth.library_name=libbluetooth_qti.so
 vendor.bluetooth.soc=cherokee
+persist.vendor.bt.a2dp_offload_cap=sbc-aptx-aptxhd-aac
 
 # CABC
 persist.cabc_profile=1
