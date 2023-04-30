@@ -26,6 +26,10 @@ PRODUCT_PACKAGE_OVERLAYS += \
 PRODUCT_PACKAGES += \
     Snap
 
+# KProfiles
+PRODUCT_PACKAGES += \
+    KProfiles
+
 # Display
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
