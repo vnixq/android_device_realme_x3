@@ -18,6 +18,10 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 PRODUCT_PACKAGES += \
     AntHalService-Soong
 
+# APN
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/apns-conf.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/apns-conf.xml
+
 # Bluetooth
 PRODUCT_PACKAGE_OVERLAYS += \
     vendor/qcom/opensource/commonsys-intf/bluetooth/overlay/qva
