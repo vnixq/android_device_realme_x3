@@ -15,7 +15,6 @@
  */
 
 #define LOG_TAG "android.hardware.biometrics.fingerprint@2.1-service.x3"
-#define LOG_VERBOSE "android.hardware.biometrics.fingerprint@2.1-service.x3"
 
 #include <hardware/hardware.h>
 #include <hardware/fingerprint.h>
