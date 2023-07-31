@@ -20,18 +20,27 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 # Inherit device configuration
 $(call inherit-product, device/realme/x3/device.mk)
+$(call inherit-product, vendor/blaze/config/common_full_phone.mk)
 
-# Inherit common ArrowOS configuration
-TARGET_BOOT_ANIMATION_RES := 1080
-TARGET_INCLUDE_PIXEL_CHARGER := true
-$(call inherit-product, vendor/arrow/config/common.mk)
+# Blaze Official Stuff
+BLAZE_MAINTAINER := Ak
+BLAZE_BUILD_TYPE := OFFICIAL
+TARGET_FACE_UNLOCK_SUPPORTED := true
+TARGET_USE_PIXEL_CHARGER := true
+TARGET_SUPPORTS_BLUR := true
+WITH_GAPPS := true
 
 # Device identifier
-PRODUCT_NAME := arrow_x3
+PRODUCT_NAME := blaze_x3
 PRODUCT_DEVICE := x3
 PRODUCT_BRAND := realme
 PRODUCT_MODEL := Realme X3 / SuperZoom
 PRODUCT_MANUFACTURER := realme
 PRODUCT_GMS_CLIENTID_BASE := android-oppo
 
-DEVICE_MAINTAINER := Adithya (ghostrider_reborn)
+# Build info
+BUILD_FINGERPRINT := "google/coral/coral:13/TP1A.221005.002.B2/9382335:user/release-keys"
+PRODUCT_BUILD_PROP_OVERRIDES += \
+        TARGET_DEVICE=RMX2081 \
+        PRODUCT_NAME=RMX2081 \
+        PRIVATE_BUILD_DESC="qssi-user 12 SKQ1.211113.001 1658765450117 release-keys"
