@@ -24,12 +24,6 @@
 #include <unistd.h>
 #include <utils/Log.h>
 #include <thread>
-#include <fstream>
-
-#define FP_PRESS_PATH "/sys/kernel/oppo_display/notify_fppress"
-#define DIMLAYER_PATH "/sys/kernel/oppo_display/dimlayer_hbm"
-#define STATUS_ON "1"
-#define STATUS_OFF "0"
 
 namespace android {
 namespace hardware {
@@ -38,14 +32,7 @@ namespace fingerprint {
 namespace V2_1 {
 namespace implementation {
 
-inline static void set(const std::string& path, const std::string& data) {
-    std::unique_ptr<FILE, decltype(&fclose)> stream(fopen(path.c_str(), "w"), &fclose);
-    if (stream) {
-        (void)write(fileno(stream.get()), data.c_str(), 1);
-    }
-}
-
-BiometricsFingerprint::BiometricsFingerprint(): isEnrolling(false) {
+BiometricsFingerprint::BiometricsFingerprint() {
     for(int i=0; i<10; i++) {
         mOplusBiometricsFingerprint = vendor::oplus::hardware::biometrics::fingerprint::V2_1::IBiometricsFingerprint::getService();
         if(mOplusBiometricsFingerprint != nullptr) break;
@@ -82,11 +69,8 @@ public:
     Return<void> onAuthenticated(uint64_t deviceId, uint32_t fingerId, uint32_t groupId,
         const hidl_vec<uint8_t>& token) {
         ALOGV("onAuthenticated %" PRIu64 " %u %u", deviceId, fingerId, groupId);
-        if(mClientCallback != nullptr){
-            if (fingerId!=0)//0 means finger not recognized
-                set(DIMLAYER_PATH, STATUS_OFF);
+        if(mClientCallback != nullptr)
             mClientCallback->onAuthenticated(deviceId, fingerId, groupId, token);
-        }
         return Void();
     }
 
@@ -117,15 +101,8 @@ public:
         return Void();
     }
 
-    Return<void> onTouchUp(uint64_t deviceId) {
-        set(FP_PRESS_PATH, STATUS_OFF);
-        return mClientCallback->onAcquired(deviceId, android::hardware::biometrics::fingerprint::V2_1::FingerprintAcquiredInfo::ACQUIRED_VENDOR, 0);
-	}
-
-    Return<void> onTouchDown(uint64_t deviceId) {
-        set(FP_PRESS_PATH, STATUS_ON);
-        return mClientCallback->onAcquired(deviceId, android::hardware::biometrics::fingerprint::V2_1::FingerprintAcquiredInfo::ACQUIRED_VENDOR, 1);
-	}
+    Return<void> onTouchUp(uint64_t deviceId) { return Void(); }
+    Return<void> onTouchDown(uint64_t deviceId) { return Void(); }
     Return<void> onSyncTemplates(uint64_t deviceId, const hidl_vec<uint32_t>& fingerId, uint32_t remaining) {
         ALOGV("onSyncTemplates %" PRIu64 " %zu %" PRIu32, deviceId, fingerId.size(), remaining);
         myDeviceId = deviceId;
@@ -204,22 +181,18 @@ Return<RequestStatus> BiometricsFingerprint::OplusToAOSPRequestStatus(vendor::op
 }
 
 Return<uint64_t> BiometricsFingerprint::preEnroll()  {
-    ALOGE("preEnroll");
-    setFingerprintScreenState(true);
+    ALOGV("preEnroll");
     return mOplusBiometricsFingerprint->preEnroll();
 }
 
 Return<RequestStatus> BiometricsFingerprint::enroll(const hidl_array<uint8_t, 69>& hat,
     uint32_t gid, uint32_t timeoutSec)  {
-    ALOGE("enroll");
-    isEnrolling = true;
+    ALOGV("enroll");
     return OplusToAOSPRequestStatus(mOplusBiometricsFingerprint->enroll(hat, gid, timeoutSec));
 }
 
-Return<RequestStatus> BiometricsFingerprint::postEnroll() {
-    ALOGE("postEnroll");
-    isEnrolling = false;
-    setFingerprintScreenState(isEnrolling);
+Return<RequestStatus> BiometricsFingerprint::postEnroll()  {
+    ALOGV("postEnroll");
     return OplusToAOSPRequestStatus(mOplusBiometricsFingerprint->postEnroll());
 }
 
@@ -239,10 +212,6 @@ Return<RequestStatus> BiometricsFingerprint::cancel()  {
                 android::hardware::biometrics::fingerprint::V2_1::FingerprintError::ERROR_CANCELED,
                 0);
     }
-    if (isEnrolling)
-        isEnrolling = false;
-    else
-        setFingerprintScreenState(false);
     return ret;
 }
 
@@ -286,20 +255,8 @@ Return<RequestStatus> BiometricsFingerprint::setActiveGroup(uint32_t gid,
 }
 
 Return<RequestStatus> BiometricsFingerprint::authenticate(uint64_t operationId, uint32_t gid)  {
-    ALOGE("auth");
-    RequestStatus status = OplusToAOSPRequestStatus(mOplusBiometricsFingerprint->authenticate(operationId, gid));
-    if (status == RequestStatus::SYS_OK) {
-        setFingerprintScreenState(true);
-    }
+    ALOGV("auth");
     return OplusToAOSPRequestStatus(mOplusBiometricsFingerprint->authenticate(operationId, gid));
-}
-
-void BiometricsFingerprint::setFingerprintScreenState(const bool on) {
-    mOplusBiometricsFingerprint->setScreenState(
-        on ? vendor::oplus::hardware::biometrics::fingerprint::V2_1::FingerprintScreenState::FINGERPRINT_SCREEN_ON :
-            vendor::oplus::hardware::biometrics::fingerprint::V2_1::FingerprintScreenState::FINGERPRINT_SCREEN_OFF
-        );
-    set(DIMLAYER_PATH, on ? STATUS_ON: STATUS_OFF);
 }
 
 } // namespace implementation
