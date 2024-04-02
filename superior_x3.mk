@@ -20,20 +20,21 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 # Inherit device configuration
 $(call inherit-product, device/realme/x3/device.mk)
-$(call inherit-product, vendor/derp/config/common_full_phone.mk)
+$(call inherit-product, vendor/superior/config/common.mk)
 
-# derp
+# superior
+TARGET_INCLUDE_PIXEL_CHARGER := true
 TARGET_BOOT_ANIMATION_RES := 1080
 TARGET_GAPPS_ARCH := arm64
-IS_PHONE := true
-TARGET_SUPPORTS_GOOGLE_RECORDER := true
-DERP_BUILDTYPE := Personal
-
-# Enable quick tap
-TARGET_SUPPORTS_QUICK_TAP := true
+SUPERIOR_OFFICIAL := false 
+TARGET_SUPPORTS_FACE_UNLOCK := true
+TARGET_SUPPORTS_BLUR := true
+SYSTEM_OPTIMIZE_JAVA := true
+SYSTEMUI_OPTIMIZE_JAVA := true
+BUILD_WITH_GAPPS := true
 
 # Device identifier
-PRODUCT_NAME := derp_x3
+PRODUCT_NAME := superior_x3
 PRODUCT_DEVICE := x3
 PRODUCT_BRAND := realme
 PRODUCT_MODEL := Realme X3 / SuperZoom
