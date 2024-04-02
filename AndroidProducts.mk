@@ -5,9 +5,9 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/blaze_x3.mk
+    $(LOCAL_DIR)/superior_x3.mk
 
 COMMON_LUNCH_CHOICES := \
-    blaze_x3-user \
-    blaze_x3-userdebug \
-    blaze_x3-eng
+    superior_x3-user \
+    superior_x3-userdebug \
+    superior_x3-eng
