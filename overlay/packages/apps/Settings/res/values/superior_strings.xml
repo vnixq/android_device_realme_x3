@@ -14,11 +14,6 @@
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <!-- About phone screen, Superior OS version -->
-    <string name="superior_version">SuperiorOS version</string>
-    <string name="superior_version_default">Lavaghul Edition</string>
-    <string name="keywords_superior_version">SuperiorOS version, superior version</string>
-
     <!-- SuperiorOS-MOD Maintainer -->
     <string name="SpOS_maintainer">Vnixqpr</string>
 
