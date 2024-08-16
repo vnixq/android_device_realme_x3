@@ -24,6 +24,7 @@ $(call inherit-product, vendor/derp/config/common_full_phone.mk)
 
 #derp
 DERP_BUILDTYPE := ENDIF
+IS_PHONE := true
 TARGET_BOOT_ANIMATION_RES := 1080
 TARGET_SUPPORTS_CALL_RECORDING := true
 TARGET_USES_PICO_GAPPS := true
