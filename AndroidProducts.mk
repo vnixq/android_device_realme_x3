@@ -5,9 +5,9 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/derp_x3.mk
+    $(LOCAL_DIR)/arrow_x3.mk
 
 COMMON_LUNCH_CHOICES := \
-    derp_x3-user \
-    derp_x3-userdebug \
-    derp_x3-eng
+    arrow_x3-user \
+    arrow_x3-userdebug \
+    arrow_x3-eng
