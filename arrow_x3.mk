@@ -25,7 +25,7 @@ $(call inherit-product, vendor/arrow/config/common.mk)
 #arrowfy
 TARGET_GAPPS_ARCH := arm64
 TARGET_SUPPORTS_CALL_RECORDING := true
-DEVICE_MAINTAINER := vhsethi
+DEVICE_MAINTAINER := vnixqr
 TARGET_INCLUDE_PIXEL_CHARGER := true
 TARGET_BOOT_ANIMATION_RES := 1080
 
