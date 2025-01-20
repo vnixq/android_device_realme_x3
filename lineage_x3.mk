@@ -20,17 +20,16 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 # Inherit device configuration
 $(call inherit-product, device/realme/x3/device.mk)
-$(call inherit-product, vendor/arrow/config/common.mk)
+$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
 #arrowfy
 TARGET_GAPPS_ARCH := arm64
 TARGET_SUPPORTS_CALL_RECORDING := true
-DEVICE_MAINTAINER := vnixqr
 TARGET_INCLUDE_PIXEL_CHARGER := true
 TARGET_BOOT_ANIMATION_RES := 1080
 
 # Device identifier
-PRODUCT_NAME := arrow_x3
+PRODUCT_NAME := lineage_x3
 PRODUCT_DEVICE := x3
 PRODUCT_BRAND := realme
 PRODUCT_MODEL := Realme X3 / SuperZoom
