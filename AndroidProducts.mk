@@ -5,9 +5,9 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/arrow_x3.mk
+    $(LOCAL_DIR)/lineage_x3.mk
 
 COMMON_LUNCH_CHOICES := \
-    arrow_x3-user \
-    arrow_x3-userdebug \
-    arrow_x3-eng
+    lineage_x3-user \
+    lineage_x3-userdebug \
+    lineage_x3-eng
